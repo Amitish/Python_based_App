@@ -23,11 +23,11 @@ stages:
               targetType: 'inline'
               script: 'sudo apt update'
             
-          - task: Bash@3
-            displayName: Install Python-PIP
-            inputs:
-              targetType: 'inline'
-              script: 'sudo apt install python3-pip'
+          # - task: Bash@3
+          #   displayName: Install Python-PIP
+          #   inputs:
+          #     targetType: 'inline'
+          #     script: 'sudo apt install python3-pip'
 
           - task: Bash@3
             displayName: Run pre-defined commands
