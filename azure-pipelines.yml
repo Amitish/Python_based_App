@@ -10,30 +10,49 @@ stages:
   - job: 
     steps: 
     - task: PowerShell@2
+      displayName: Checkout Code
       inputs:
         targetType: 'inline'
         script: 'Write-Host "Lets get started"'
     
 
     - task: PublishPipelineArtifact@1
-      displayName: Publish BAckend Artifacts
+      displayName: Publish Backend Artifacts
       inputs:
         targetPath: '$(Pipeline.Workspace)'
         artifact: 'backend-artifacts'
         publishLocation: 'pipeline'
 
-# - stage: deploy
-#   jobs:
-#   - deployment: Deploybackend
-#     displayName: Deploy Python App
-#     environment: 
-#       name: 'Python_App'
-#       resourceName: py-pip-vm   # If there is only 1 VM then no need to define
-#       resourceType: virtualMachine
-#     strategy:
-#       runOnce:
-#         deploy:
-#           steps:
+- stage: deploy
+  jobs:
+  - deployment: Deploybackend
+    displayName: Deploy Python App
+    environment: 
+      name: 'Python_App'
+      resourceName: py-pip-vm   # If there is only 1 VM then no need to define
+      resourceType: virtualMachine
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: DownloadPipelineArtifact@2
+            inputs:
+              buildType: 'specific'
+              project: '2a30e7b4-3892-4eb2-9db6-6cb06f7030d0'
+              definition: '21'
+              buildVersionToDownload: 'specific'
+              pipelineId: '279'
+              artifactName: 'backend-artifacts'
+              targetPath: '$(Pipeline.Workspace)'
+
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: |
+                cd /
+                sudo cp -r $(Pipeline.Workspace)/* /home/ambition
+                cd /PyTodoBackendMonolith
+                pip install -r requirements.txt
 
 
 
