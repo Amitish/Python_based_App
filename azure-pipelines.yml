@@ -55,12 +55,12 @@ stages:
               script: |
                 cd /
                 
-                git clone https://github.com/devopsinsiders/PyTodoBackendMonolith.git
+                sudo git clone https://github.com/devopsinsiders/PyTodoBackendMonolith.git
                 
                 cd /PyTodoBackendMonolith
                 
-                pip install -r requirements.txt
+                sudo pip install -r requirements.txt
                 
-                uvicorn app:app --host 0.0.0.0 --port 8000
+                sudo uvicorn app:app --host 0.0.0.0 --port 8000
 
   
