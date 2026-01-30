@@ -49,6 +49,7 @@ stages:
                 exit
 
           - task: Bash@3
+            displayName: Clone the Repo
             inputs:
               targetType: 'inline'
               script: |
