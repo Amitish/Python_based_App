@@ -1,0 +1,25 @@
+# Python based Backend Application
+
+trigger:none
+
+pool: mera-pool
+
+- stage: deploy
+  jobs:
+  - deployment: Deploybackend
+    displayName: Deploy Python App
+    environment: 
+      name: 'Python_App'
+      resourceName: py-pip-vm   # If there is only 1 VM then no need to define
+      resourceType: virtualMachine
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: Bash@3
+            inputs:
+              targetType: 'inline'
+              script: 'sudp apt update'
+                
+
+  
