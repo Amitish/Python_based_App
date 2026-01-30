@@ -46,12 +46,12 @@ stages:
               targetPath: '$(Pipeline.Workspace)'
 
           - task: Bash@3
+            displayName: Final Output
             inputs:
               targetType: 'inline'
               script: |
                 cd /
-                sudo cp -r $(Pipeline.Workspace)/* /home/ambition
-                cd /PyTodoBackendMonolith
+                sudo cp -r $(System.DefaultWorkingDirectory)/* /home/ambition
                 pip install -r requirements.txt
 
 
