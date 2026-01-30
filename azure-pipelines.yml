@@ -1,9 +1,10 @@
 # Python based Backend Application
 
-trigger:none
+trigger: none
 
 pool: mera-pool
 
+stages:
 - stage: deploy
   jobs:
   - deployment: Deploybackend
@@ -19,7 +20,6 @@ pool: mera-pool
           - task: Bash@3
             inputs:
               targetType: 'inline'
-              script: 'sudp apt update'
-                
+              script: 'sudo apt update'
 
   
