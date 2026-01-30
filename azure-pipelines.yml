@@ -18,7 +18,7 @@ stages:
         deploy:
           steps:
           - task: Bash@3
-            displayName: Updating Ubunut
+            displayName: Updating Ubuntu
             inputs:
               targetType: 'inline'
               script: 'sudo apt update'
@@ -34,6 +34,8 @@ stages:
             inputs:
               targetType: 'inline'
               script: |
+                cd /
+                
                 sudo su
                 
                 apt-get update && apt-get install -y curl gnupg2 unixodbc unixodbc-dev
