@@ -15,6 +15,39 @@ stages:
         script: 'Write-Host "Lets get started"'
     
 
+    - task: PublishPipelineArtifact@1
+      displayName: Publish BAckend Artifacts
+      inputs:
+        targetPath: '$(Pipeline.Workspace)'
+        artifact: 'backend-artifacts'
+        publishLocation: 'pipeline'
+
+# - stage: deploy
+#   jobs:
+#   - deployment: Deploybackend
+#     displayName: Deploy Python App
+#     environment: 
+#       name: 'Python_App'
+#       resourceName: py-pip-vm   # If there is only 1 VM then no need to define
+#       resourceType: virtualMachine
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # - stage: deploy
 #   jobs:
 #   - deployment: Deploybackend
