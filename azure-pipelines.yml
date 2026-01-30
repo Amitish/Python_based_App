@@ -17,11 +17,11 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: Bash@3
-            displayName: Updating Ubuntu
-            inputs:
-              targetType: 'inline'
-              script: 'sudo apt update'
+          # - task: Bash@3
+          #   displayName: Updating Ubuntu
+          #   inputs:
+          #     targetType: 'inline'
+          #     script: 'sudo apt update'
             
           # - task: Bash@3
           #   displayName: Install Python-PIP
@@ -29,24 +29,24 @@ stages:
           #     targetType: 'inline'
           #     script: 'sudo apt install python3-pip'
 
-          - task: Bash@3
-            displayName: Run pre-defined commands
-            inputs:
-              targetType: 'inline'
-              script: |
-                cd /
+          # - task: Bash@3
+          #   displayName: Run pre-defined commands
+          #   inputs:
+          #     targetType: 'inline'
+          #     script: |
+          #       cd /
                 
-                sudo su
+          #       sudo su
                 
-                apt-get update && apt-get install -y curl gnupg2 unixodbc unixodbc-dev
+          #       apt-get update && apt-get install -y curl gnupg2 unixodbc unixodbc-dev
                 
-                curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft.gpg && \
-                    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/debian/12/prod bookworm main" \
-                    > /etc/apt/sources.list.d/mssql-release.list
+          #       curl -fsSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft.gpg && \
+          #           echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft.gpg] https://packages.microsoft.com/debian/12/prod bookworm main" \
+          #           > /etc/apt/sources.list.d/mssql-release.list
                 
-                apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql18
+          #       apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql18
                 
-                exit
+          #       exit
 
           - task: Bash@3
             displayName: Clone the Repo
