@@ -5,22 +5,28 @@ trigger: none
 pool: mera-pool
 
 stages:
-- stage: deploy
+- stage: 
   jobs:
-  - deployment: Deploybackend
-    displayName: Deploy Python App
-    environment: 
-      name: 'Python_App'
-      resourceName: py-pip-vm   # If there is only 1 VM then no need to define
-      resourceType: virtualMachine
-    strategy:
-      runOnce:
-        deploy:
-          steps:
-          - task: PowerShell@2
-            inputs:
-              targetType: 'inline'
-              script: 'Write-Host "We are about to start"'
+  - job: 
+    steps: 
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: 'Write-Host "Lets get started"'
+    
+
+# - stage: deploy
+#   jobs:
+#   - deployment: Deploybackend
+#     displayName: Deploy Python App
+#     environment: 
+#       name: 'Python_App'
+#       resourceName: py-pip-vm   # If there is only 1 VM then no need to define
+#       resourceType: virtualMachine
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
           # - task: Bash@3
           #   displayName: Updating Ubuntu
           #   inputs:
